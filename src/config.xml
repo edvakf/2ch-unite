@@ -15,6 +15,7 @@
   </feature>
 
   <feature name="http://xmlns.opera.com/fileio">
+    <param name="folderhint" value="datfiles" />
   </feature>
 
 </widget>
