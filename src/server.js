@@ -1,5 +1,6 @@
 /*
  * server.js : public domain
+ * dependency : 2ch.js
  */
 
 var debug = true;
@@ -33,8 +34,11 @@ function dispatch(e){
     //log(req.uri);
     return read(e, !!req.getItem('quick'));
   default :
-    // open static file
-    return res.closeAndRedispatch();
+    //return res.closeAndRedispatch(); //can't use in a zip??
+    var file = appdir.resolve('/public_html/'+(relPath||'index.html'));
+    res.writeFile(file);
+    res.close();
+    return;
   }
   res.setStatus('404','Not Found');
   res.close();
